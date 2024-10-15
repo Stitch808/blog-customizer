@@ -42,12 +42,12 @@ export const ArticleParamsForm = ({
 		setSelectArticleState((prevState) => ({ ...prevState, [key]: value }));
 	};
 
-	const formSubmitHandler = (e: FormEvent) => {
+	const applyFormSubmitHandler = (e: FormEvent) => {
 		e.preventDefault();
 		setArticleState(selectArticleState);
 	};
 
-	const formSubmitClear = () => {
+	const clearButtonHandler = () => {
 		setSelectArticleState(defaultArticleState);
 		setArticleState(defaultArticleState);
 	};
@@ -74,7 +74,7 @@ export const ArticleParamsForm = ({
 						styles.container,
 						isOpenForm && styles.container_open
 					)}>
-					<form className={styles.form}>
+					<form className={styles.form} onSubmit={applyFormSubmitHandler}>
 						<Text as='h2' size={31} weight={800} uppercase dynamicLite>
 							Задайте параметры
 						</Text>
@@ -148,10 +148,10 @@ export const ArticleParamsForm = ({
 						</label>
 
 						<div className={styles.bottomContainer}>
-							<div onClick={formSubmitClear}>
+							<div onClick={clearButtonHandler}>
 								<Button title='Сбросить' htmlType='reset' type='clear' />
 							</div>
-							<div onClick={formSubmitHandler}>
+							<div>
 								<Button title='Применить' htmlType='submit' type='apply' />
 							</div>
 						</div>
